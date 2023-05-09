@@ -1,5 +1,34 @@
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+<div>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field class="pokemon-field">
+          <mat-label>Pokemon</mat-label>
+          <input
+            matInput
+            placeholder="Pokemon name"
+            type="text"
+            formControlName="name"
+          >
+          <button class="clear" *ngIf="form.controls['name'].value" matSuffix mat-icon-button aria-label="Clear" (click)="form.controls['name'].patchValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="searchPokemon()"
+        [disabled]="form.invalid"
+      >
+        Search
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <table mat-table [dataSource]="pokemons" *ngIf="arePokemons">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -29,10 +58,14 @@
   </table>
 
   <mat-paginator
-    [length]="pokemons.length"
+    *ngIf="arePokemons"
+    [length]="pageCount"
+    [pageIndex]="0"
+    [pageSizeOptions]="[5, 10]"
     [pageSize]="10"
-    showFirstLastButtons
     (page)="onPageChanged($event)"
+    showFirstLastButtons
   >
   </mat-paginator>
 </div>
+

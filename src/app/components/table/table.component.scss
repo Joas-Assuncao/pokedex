@@ -1,5 +1,33 @@
-.mat-elevation-z8 {
+div {
+  padding: 1em 1em;
+
+  mat-card {
+    form {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .pokemon-field {
+        width: 100%;
+      }
+
+      .clear {
+        background: transparent;
+        overflow: hidden;
+        border: none;
+      }
+    }
+
+    mat-card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
   table {
+    overflow: auto;
+    max-height: 600px;
     width: 100%;
 
     td {

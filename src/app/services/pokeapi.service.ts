@@ -32,4 +32,8 @@ export class PokeapiService {
   getPokeTypes(): Default[] {
     return PokeTypes;
   }
+
+  getPokemonByName(name: string): Observable<Default> {
+    return this.http.get<Default>(`${this.URL}pokemon/${name}`);
+  }
 }

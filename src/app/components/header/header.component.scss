@@ -1,0 +1,21 @@
+header {
+  mat-toolbar {
+    justify-content: center;
+
+    height: auto;
+
+    padding: 1em 2em;
+
+    img {
+      width: 25%;
+    }
+  }
+}
+
+@media(max-width: 700px) {
+  header {
+    mat-toolbar img {
+      width: 40%;
+    }
+  }
+}

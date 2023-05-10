@@ -1,1 +1,20 @@
-<p>pokemon works!</p>
+<mat-card class="poke-card">
+  <mat-card-header>
+    <mat-card-title>{{ pokemon.name }}</mat-card-title>
+    <mat-card-subtitle>Type(s): {{ pokemon.types }}</mat-card-subtitle>
+    <mat-card-subtitle>Weight: {{ pokemon.weight }}</mat-card-subtitle>
+    <mat-card-subtitle>Height: {{ pokemon.height }}</mat-card-subtitle>
+    <mat-card-actions>
+      <mat-icon style="cursor: pointer;" (click)="goToList()">keyboard_arrow_left</mat-icon>
+    </mat-card-actions>
+  </mat-card-header>
+  <ng-container *ngFor="let image of pokemon.url">
+    <img *ngIf="image" [src]="image" [alt]="pokemon.name">
+  </ng-container>
+  <mat-card-content>
+    <h3>Habilities</h3>
+    <p>
+      {{ pokemon.moves }}
+    </p>
+  </mat-card-content>
+</mat-card>

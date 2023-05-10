@@ -1,0 +1,30 @@
+.poke-card {
+  width: 90%;
+  max-width: 1000px;
+
+  text-align: center;
+  margin: 2em auto;
+
+  box-shadow: 0 0 5px 1px rgba(33, 150, 243, 0.4);
+
+  img {
+    max-height: 100px;
+  }
+
+  mat-card-header {
+    align-items: baseline;
+    justify-content: space-between;
+
+    text-align: left;
+
+    padding: 0 2em;
+
+    mat-card-actions {
+      margin: 0 16px;
+    }
+  }
+
+  mat-card-content {
+    margin-top: 5em;
+  }
+}

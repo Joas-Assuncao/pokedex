@@ -7,8 +7,13 @@ div {
       align-items: center;
       justify-content: space-between;
 
-      .pokemon-field {
+      mat-form-field.pokemon-field {
         width: 100%;
+
+      }
+
+      mat-form-field.pokemon-field + mat-form-field.pokemon-field {
+        margin-left: 1em;
       }
 
       .clear {

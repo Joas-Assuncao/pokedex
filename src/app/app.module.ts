@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PokedexModule } from './pages/pokedex/pokedex.module';
+import { PokemonModule } from './pages/pokemon/pokemon.module';
 import { AppMaterialModule } from './shared/app-material-module.module';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AppMaterialModule } from './shared/app-material-module.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     PokedexModule,
+    PokemonModule,
     ReactiveFormsModule,
     AppMaterialModule,
   ],

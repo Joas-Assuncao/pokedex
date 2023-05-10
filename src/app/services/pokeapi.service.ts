@@ -5,7 +5,6 @@ import { first } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Default, ListPokemons } from '../models/global';
-import { PokeTypes } from './PokeTypes';
 
 @Injectable({
   providedIn: 'root'
@@ -23,17 +22,21 @@ export class PokeapiService {
     );
   }
 
-  getPokemonsByType(type: string): Observable<ListPokemons> {
-    return this.http.get<ListPokemons>(`${this.URL}type/${type}`).pipe(
+  getPokemonsByType(type: string): Observable<any> {
+    return this.http.get<any>(`${this.URL}${type}`).pipe(
       first(),
     );
   }
 
-  getPokeTypes(): Default[] {
-    return PokeTypes;
+  getPokeTypes(): Observable<ListPokemons> {
+    return this.http.get<ListPokemons>(`${this.URL}type/`).pipe(
+      first(),
+    );
   }
 
-  getPokemonByName(name: string): Observable<Default> {
-    return this.http.get<Default>(`${this.URL}pokemon/${name}`);
+  getPokemonByNameOrId(name: string): Observable<any> {
+    return this.http.get<Default>(`${this.URL}pokemon/${name}`).pipe(
+      first(),
+    );
   }
 }

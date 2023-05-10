@@ -2,18 +2,41 @@
   <mat-card>
     <mat-card-content>
       <form [formGroup]="form">
-        <mat-form-field class="pokemon-field">
+        <mat-form-field appearance="fill"class="pokemon-field">
           <mat-label>Pokemon</mat-label>
           <input
             matInput
-            placeholder="Pokemon name"
+            placeholder="Name or ID"
             type="text"
             formControlName="name"
           >
-          <button class="clear" *ngIf="form.controls['name'].value" matSuffix mat-icon-button aria-label="Clear" (click)="form.controls['name'].patchValue('')">
+          <button
+            class="clear"
+            *ngIf="form.controls['name'].value"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="form.controls['name'].patchValue('')"
+          >
             <mat-icon>close</mat-icon>
           </button>
 
+        </mat-form-field>
+        <mat-form-field appearance="fill"class="pokemon-field">
+          <mat-label>Type</mat-label>
+          <mat-select
+            formControlName="type"
+            [disabled]="!pokeTypes[0]"
+            (selectionChange)="getPokemonsByType()"
+          >
+            <mat-option [value]="null">Select</mat-option>
+            <mat-option
+              *ngFor="let pokeType of pokeTypes"
+              [value]="pokeType.url"
+            >
+              {{ pokeType.name }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </form>
     </mat-card-content>
@@ -21,14 +44,22 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="searchPokemon()"
+        (click)="getPokemonByNameOrId()"
         [disabled]="form.invalid"
       >
         Search
       </button>
+      <button
+        mat-raised-button
+        color="secundary"
+        (click)="getPokemons('10', '0')"
+        [disabled]="haveAllPokemons"
+      >
+        Reload Pokemons
+      </button>
     </mat-card-actions>
   </mat-card>
-  <table mat-table [dataSource]="pokemons" *ngIf="arePokemons">
+  <table mat-table [dataSource]="pokemons" *ngIf="thereArePokemons">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -53,12 +84,20 @@
       </td>
     </ng-container>
 
+    <!-- Image Column -->
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef>Details</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon (click)="goToPokemon(element.id)" style="cursor: pointer;">more_vert</mat-icon>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
   <mat-paginator
-    *ngIf="arePokemons"
+    *ngIf="thereArePokemons && !form.controls['type'].value"
     [length]="pageCount"
     [pageIndex]="0"
     [pageSizeOptions]="[5, 10]"

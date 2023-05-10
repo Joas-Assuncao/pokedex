@@ -1,35 +1,6 @@
 div {
   padding: 1em 1em;
 
-  mat-card {
-    form {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      mat-form-field.pokemon-field {
-        width: 100%;
-
-      }
-
-      mat-form-field.pokemon-field + mat-form-field.pokemon-field {
-        margin-left: 1em;
-      }
-
-      .clear {
-        background: transparent;
-        overflow: hidden;
-        border: none;
-      }
-    }
-
-    mat-card-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
   table {
     overflow: auto;
     max-height: 600px;

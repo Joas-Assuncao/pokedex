@@ -1,0 +1,30 @@
+mat-card {
+  padding: 1em 1em;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    mat-form-field.pokemon-field {
+      width: 100%;
+
+    }
+
+    mat-form-field.pokemon-field + mat-form-field.pokemon-field {
+      margin-left: 1em;
+    }
+
+    .clear {
+      background: transparent;
+      overflow: hidden;
+      border: none;
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

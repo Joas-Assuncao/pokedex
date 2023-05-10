@@ -1,3 +1,16 @@
-
-<poke-table>
-</poke-table>
+<main>
+  <poke-form
+    [form]="form"
+    [needPagination]="needPagination"
+    [haveAllPokemons]="haveAllPokemons"
+    [pokeTypes]="pokeTypes"
+    (eventGetPokemons)="getPokemons()"
+    (eventGetPokemonsByType)="getPokemonsByType()"
+    (eventGetPokemonByNameOrId)="getPokemonByNameOrId()"
+  ></poke-form>
+  <poke-table
+    [pageCount]="pageCount"
+    [pokemons]="pokemons"
+    (eventGetPokemons)="getPokemons()"
+  ></poke-table>
+</main>

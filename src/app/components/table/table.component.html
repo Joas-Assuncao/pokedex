@@ -1,65 +1,5 @@
 <div>
-  <mat-card>
-    <mat-card-content>
-      <form [formGroup]="form">
-        <mat-form-field appearance="fill"class="pokemon-field">
-          <mat-label>Pokemon</mat-label>
-          <input
-            matInput
-            placeholder="Name or ID"
-            type="text"
-            formControlName="name"
-          >
-          <button
-            class="clear"
-            *ngIf="form.controls['name'].value"
-            matSuffix
-            mat-icon-button
-            aria-label="Clear"
-            (click)="form.controls['name'].patchValue('')"
-          >
-            <mat-icon>close</mat-icon>
-          </button>
-
-        </mat-form-field>
-        <mat-form-field appearance="fill"class="pokemon-field">
-          <mat-label>Type</mat-label>
-          <mat-select
-            formControlName="type"
-            [disabled]="!pokeTypes[0]"
-            (selectionChange)="getPokemonsByType()"
-          >
-            <mat-option [value]="null">Select</mat-option>
-            <mat-option
-              *ngFor="let pokeType of pokeTypes"
-              [value]="pokeType.url"
-            >
-              {{ pokeType.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="getPokemonByNameOrId()"
-        [disabled]="form.invalid"
-      >
-        Search
-      </button>
-      <button
-        mat-raised-button
-        color="secundary"
-        (click)="getPokemons('10', '0')"
-        [disabled]="haveAllPokemons"
-      >
-        Reload Pokemons
-      </button>
-    </mat-card-actions>
-  </mat-card>
-  <table mat-table [dataSource]="pokemons" *ngIf="thereArePokemons">
+  <table mat-table [dataSource]="pokemons" *ngIf="!thereArePokemons">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -97,7 +37,7 @@
   </table>
 
   <mat-paginator
-    *ngIf="thereArePokemons && !form.controls['type'].value"
+    *ngIf="!thereArePokemons"
     [length]="pageCount"
     [pageIndex]="0"
     [pageSizeOptions]="[5, 10]"

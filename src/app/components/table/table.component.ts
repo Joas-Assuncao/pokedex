@@ -12,7 +12,7 @@ import { Default } from 'src/app/models/global';
 export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns: string[] = ['id', 'name', 'image', 'details'];
+  displayedColumns: string[] = ['id', 'name', 'image', 'isFavorite', 'details'];
 
   @Input() pokemons: Default[];
   @Input() form: FormGroup;
@@ -21,6 +21,7 @@ export class TableComponent implements OnInit {
   @Input() haveAllPokemons: boolean;
 
   @Output() eventGetPokemons = new EventEmitter();
+  @Output() eventSavePokemon = new EventEmitter();
 
   constructor(
     private router: Router,
@@ -40,15 +41,19 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  getPokemons(limit: string = '10', offset: string = '0') {
+  getPokemons(limit: string, offset: string) {
     this.eventGetPokemons.emit({ limit, offset });
+  }
+
+  savePokemon(element: Default) {
+    this.eventSavePokemon.emit(element);
   }
 
   onPageChanged({ pageSize, pageIndex }: PageEvent) {
     const offset = pageSize * pageIndex;
     const limit = pageSize;
 
-    this.getPokemons(limit.toString(), offset.toString());
+    this.getPokemons(`${limit}`, `${offset}`);
   }
 
   goToPokemon(pokemonId: string) {

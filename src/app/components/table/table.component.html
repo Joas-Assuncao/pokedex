@@ -24,11 +24,26 @@
       </td>
     </ng-container>
 
-    <!-- Image Column -->
+    <!-- Is Favorite Column -->
+    <ng-container matColumnDef="isFavorite">
+      <th mat-header-cell *matHeaderCellDef>Favorite</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slide-toggle
+          color="primary"
+          [checked]="element.isFavorite"
+          (change)="savePokemon(element)"
+          [(ngModel)]="element.isFavorite"
+        >
+          <mat-icon color="accent">{{ element.isFavorite ? 'star' : 'star_border' }}</mat-icon>
+        </mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <!-- Details Column -->
     <ng-container matColumnDef="details">
       <th mat-header-cell *matHeaderCellDef>Details</th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon (click)="goToPokemon(element.id)" style="cursor: pointer;">more_vert</mat-icon>
+        <mat-icon color="primary" (click)="goToPokemon(element.id)" style="cursor: pointer;">more_vert</mat-icon>
       </td>
     </ng-container>
 

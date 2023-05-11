@@ -5,7 +5,7 @@
     <mat-card-subtitle>Weight: {{ pokemon.weight }}</mat-card-subtitle>
     <mat-card-subtitle>Height: {{ pokemon.height }}</mat-card-subtitle>
     <mat-card-actions>
-      <mat-icon style="cursor: pointer;" (click)="goToList()">keyboard_arrow_left</mat-icon>
+      <mat-icon color="primary" style="cursor: pointer;" (click)="goToList()">keyboard_arrow_left</mat-icon>
     </mat-card-actions>
   </mat-card-header>
   <ng-container *ngFor="let image of pokemon.url">

@@ -4,13 +4,14 @@
     [needPagination]="needPagination"
     [haveAllPokemons]="haveAllPokemons"
     [pokeTypes]="pokeTypes"
-    (eventGetPokemons)="getPokemons()"
+    (eventGetPokemons)="getPokemons($event)"
     (eventGetPokemonsByType)="getPokemonsByType()"
     (eventGetPokemonByNameOrId)="getPokemonByNameOrId()"
   ></poke-form>
   <poke-table
     [pageCount]="pageCount"
     [pokemons]="pokemons"
-    (eventGetPokemons)="getPokemons()"
+    (eventSavePokemon)="savePokemon($event)"
+    (eventGetPokemons)="getPokemons($event)"
   ></poke-table>
 </main>

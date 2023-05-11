@@ -3,6 +3,7 @@ export interface Default {
   url: string;
   id?: string;
   sprites?: any;
+  isFavorite?: boolean;
 };
 
 export interface ListPokemons {

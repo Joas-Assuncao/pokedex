@@ -16,8 +16,8 @@ export class PokeapiService {
     private http: HttpClient
   ) { }
 
-  getPokemons(limit: string, offset: string): Observable<ListPokemons> {
-    return this.http.get<ListPokemons>(`${this.URL}pokemon/?limit=${limit}&offset=${offset}`).pipe(
+  getPokemons(limit?: string, offset?: string): Observable<ListPokemons> {
+    return this.http.get<ListPokemons>(`${this.URL}pokemon/?limit=${limit || '10'}&offset=${offset || '0'}`).pipe(
       first(),
     );
   }

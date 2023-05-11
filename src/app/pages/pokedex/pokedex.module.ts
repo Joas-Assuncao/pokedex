@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from 'src/app/components/form/form.component';
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { TableComponent } from 'src/app/components/table/table.component';
@@ -22,7 +21,7 @@ import { PokedexComponent } from './pokedex.component';
     PokedexRoutingModule,
     ReactiveFormsModule,
     AppMaterialModule,
-    MatCardModule,
+    FormsModule,
   ]
 })
 export class PokedexModule { }
